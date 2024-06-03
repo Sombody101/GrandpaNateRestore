@@ -7,10 +7,9 @@
     /* For debugging
     border: 1px dotted red;
     */
-    --_: none;
 
     box-sizing: border-box;
-    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-family: var(--font-montserrat);
 }
 
 :root {
@@ -24,13 +23,11 @@
 
     --white: #fff;
 
-    /* Themes defined in /extras/themes.css [dark/light] */
-
-    --font-montserrat: "Montserrat", monospace;
+    --font-montserrat: "Montserrat", Arial, Helvetica, sans-serif;
     --font-scp: "Source Code Pro", monospace;
 }
 
-.f-scp { 
+.f-scp {
     font-family: var(--font-scp);
 }
 
@@ -42,9 +39,11 @@
     --background: #142532;
     --foreground: #fff;
     --light: #e3f6f5;
-    --mid-light: #4d6792;
-    --mid: #4d6e92;
+    --mid-light: #358499;
+    --mid: #2E7284;
     --dark: #21515e;
+
+    --accent: #954e40;
 
     --text: #fff;
     --text-invert: #000;
@@ -62,7 +61,7 @@
 }
 
 a {
-    transition: color .25s ease;
+    transition: color 0.25s ease;
 }
 
 a:visited,
@@ -71,21 +70,14 @@ a:link {
 }
 
 a:hover {
-    color: #FFF;
+    color: #fff;
 }
 
-header {
+nav {
     transition: transform 0.3s ease-in-out;
     background-color: transparent;
 
-    z-index: 100;
-
-    height: 50px;
-    width: 100%;
-
     padding: 10px;
-    position: fixed;
-    top: 0;
 
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(2px);
@@ -144,9 +136,7 @@ main {
     margin: 10px 20%;
     padding: 10px;
 
-    height: 100dvh;
-
-    transition: margin .5s ease;
+    transition: margin 0.5s ease;
 }
 
 #info-main {
@@ -164,6 +154,10 @@ main {
     border-radius: 10px;
 }
 
+#nate-img {
+    border-radius: 10px;
+}
+
 footer {
     background-color: var(--dark);
     color: var(--white);
@@ -176,10 +170,18 @@ footer {
     margin-bottom: 0;
 }
 
-footer > .content {
+footer .content {
     display: flex;
     align-content: space-around;
     margin-bottom: 40px;
+}
+
+footer .content > div {
+    border-radius: 5px;
+    background-color: var(--mid);
+
+    width: 45%;
+    margin: 10px;
 }
 
 footer ul {
@@ -223,6 +225,28 @@ footer li span {
 
 .side-by-side {
     display: flex;
+}
+
+#icarousel {
+    margin: 100px auto;
+}
+
+.carousel-inner {
+    height: 0;
+    padding-bottom: 50%; /* this sets carousel aspect ratio (4:1 here) */
+}
+
+.carousel-item {
+    position: absolute !important; /* Bootstrap is insistent */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.carousel-item img {
+    height: 100%; /* Bootstrap handles width already */
+    object-fit: contain; /* or 'contain' if you want stretch instead of crop */
 }
 
 @media screen and (max-width: 450px) {
