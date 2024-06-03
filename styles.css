@@ -156,6 +156,8 @@ main {
 
 #nate-img {
     border-radius: 10px;
+    height: auto;
+    width: auto;
 }
 
 footer {

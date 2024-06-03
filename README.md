@@ -2,4 +2,4 @@
 
 ## Check out the site!
 
-[GrandpaNate.com](grandpanate.com)
+[GrandpaNate.com](https://grandpanate.com)
