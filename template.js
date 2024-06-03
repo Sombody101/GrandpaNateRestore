@@ -1,78 +1,60 @@
-function appendNav() {
-    let found_navs = document.getElementsByTagName("nav");
-    if (found_navs.length < 1) return; // No nav template tag found
+/*
+ * Returns the first instance of a tag by name, or false if none is found
+ */
+function getTemplate(tag_name) {
+    let found_tags = document.getElementsByTagName(tag_name);
+    if (found_tags.length < 1) return false; // No footer template tag found
 
-    let nav = found_navs[0];
-
-    nav.setAttribute("data-bs-theme", "dark")
-    nav.classList.add("navbar", "navbar-expand-lg")
-    nav.innerHTML = `<div class="container-fluid">
-    <a class="navbar-brand" href="#">Grandpa Nate</a>
-
-    <button class="navbar-toggler fg-body-tertiary" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-        </span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Pages
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="./directory.html">Directory</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="https://github.com/Sombody101/GrandpaNateRestore">
-                            See page source (GitHub)
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>`;
+    return found_tags[0] || false; // Return false if null
 }
 
+/*
+ * Get the template source from "./templates"
+ */
+function setTemplateSource(filePath, target) {
+    return fetch("/templates/" + filePath)
+        .then((response) => response.text())
+        .then((htmlString) => {
+            target.innerHTML = htmlString
+        })
+        .catch((error) => console.error(error));
+}
+
+/*
+ * Find and replace the first nav tag with the full nav template
+ */
+function appendNav() {
+    let nav = getTemplate("nav");
+    if (!nav) return;
+
+    nav.setAttribute("data-bs-theme", "dark");
+    nav.classList.add("navbar", "navbar-expand-lg");
+    setTemplateSource("nav.html", nav)
+}
+
+/*
+ * Find and replace the first footer tag with the full footer template
+ */
 function addFooter() {
-    let found_footers = document.getElementsByTagName("footer");
-    if (found_footers.length < 1) return; // No footer template tag found
+    let footer = getTemplate("footer");
+    if (!footer) return;
 
-    let footer = found_footers[0];
     footer.classList.add("shadow-lg");
-    footer.innerHTML = `<div class="container">
-    <h5 class="my-2">
-        In loving memory of Nate Hughes.
-    </h5>
+    setTemplateSource("footer.html", footer)
+}
 
-    <div class="content d-flex flex-column flex-sm-row justify-content-around align-items-center">
-        <div>
-            <h4 class="mt-2">Temporary</h4>
-        </div>
+/*
+ * Find and replace the first bs-import tag with the full bs-import template
+ */
+function addBootStrap() {
+    let bs = getTemplate("bs-import");
+    if (!bs) return;
 
-        <div>
-            <h4 class="mt-2">Temporary</h4>
-        </div>
-    </div>
-
-    <div style="margin-top: 30px;">
-        <small>Copyright &copy; 2024, The Heyborne Family.</small>
-    </div>
-</div>`;
+    setTemplateSource("bs.html", bs)
 }
 
 // Resolve templates
 appendNav();
 addFooter();
+// addBootStrap();
+// addAOS();
