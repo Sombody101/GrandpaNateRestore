@@ -15,7 +15,7 @@ function setTemplateSource(filePath, target) {
     return fetch("/templates/" + filePath)
         .then((response) => response.text())
         .then((htmlString) => {
-            target.innerHTML = htmlString
+            target.innerHTML = htmlString;
         })
         .catch((error) => console.error(error));
 }
@@ -29,7 +29,7 @@ function appendNav() {
 
     nav.setAttribute("data-bs-theme", "dark");
     nav.classList.add("navbar", "navbar-expand-lg");
-    setTemplateSource("nav.html", nav)
+    setTemplateSource("nav.html", nav);
 }
 
 /*
@@ -39,22 +39,10 @@ function addFooter() {
     let footer = getTemplate("footer");
     if (!footer) return;
 
-    footer.classList.add("shadow-lg");
-    setTemplateSource("footer.html", footer)
-}
-
-/*
- * Find and replace the first bs-import tag with the full bs-import template
- */
-function addBootStrap() {
-    let bs = getTemplate("bs-import");
-    if (!bs) return;
-
-    setTemplateSource("bs.html", bs)
+    footer.classList.add("shadow-lg", "footer", "mt-auto", "py-3");
+    setTemplateSource("footer.html", footer);
 }
 
 // Resolve templates
 appendNav();
 addFooter();
-// addBootStrap();
-// addAOS();
