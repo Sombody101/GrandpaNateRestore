@@ -85,14 +85,11 @@
 
         for (let uls_ind = 0; uls_ind < uls.length; uls_ind++) {
             let list = uls[uls_ind].getElementsByTagName("li");
-            let fade_right = false
 
             for (let i = 0; i < list.length; i++) {
                 let item = list[i]
-                item.setAttribute("data-aos", fade_right ? "fade-right" : "fade-left");
+                item.setAttribute("data-aos", "fade-left");
                 item.setAttribute("data-aos-delay", i * 100)
-
-                fade_right = !fade_right
             }
         }
     </script>
