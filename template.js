@@ -15,7 +15,7 @@ function setTemplateSource(filePath, target) {
     return fetch("/templates/" + filePath)
         .then((response) => response.text())
         .then((htmlString) => {
-            target.innerHTML = htmlString;
+            target.innerHTML += htmlString;
         })
         .catch((error) => console.error(error));
 }
@@ -39,10 +39,19 @@ function addFooter() {
     let footer = getTemplate("footer");
     if (!footer) return;
 
-    footer.classList.add("shadow-lg", "footer", "mt-auto", "py-3");
+    footer.classList.add("shadow-lg", "footer", "py-3");
     setTemplateSource("footer.html", footer);
+}
+
+function addCSS() {
+    let css = getTemplate("css-import")
+    if (!css) return
+
+    console.log("Adding css")
+    setTemplateSource("css.html", css)
 }
 
 // Resolve templates
 appendNav();
 addFooter();
+addCSS()
