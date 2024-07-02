@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/bootstrap.bundle.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="/assets/icons/e-finished-image-rbg.ico">
+    <title>Gallery</title>
+</head>
+
+<nav></nav>
+
+<body class="d-flex flex-column min-vh-100">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+
+    <style>
+        /* Styles specific to the cards here */
+
+        .card {
+            margin: 10px;
+            background-color: var(--mid);
+        }
+
+        .card img {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
+
+        .form-control {
+            background-color: var(--light);
+        }
+    </style>
+
+    <main class="py-0">
+
+        <div class="d-flex centered" role="search">
+            <input id="searchbar" class="form-control me-2" type="search" placeholder="Search Image" aria-label="Search"
+                onkeypress="handleSearch(event)">
+            <button class="btn btn-outline-primary" type="button" onclick="searchImages()">Search</button>
+        </div>
+
+        <div id="image_card_container" class="d-flex mt-5 flex-wrap justify-content-evenly">
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script src="/template.js"></script>
+    <script async src="/js/img-fetch.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
